@@ -19,7 +19,7 @@ services:
       context: ./front-end
     container_name: todo_frontend
     ports:
-      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+      - "${3000}:${FRONTEND_PORT}"
     environment:
       - PORT=${FRONTEND_PORT}
 
