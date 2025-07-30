@@ -13,6 +13,7 @@ services:
       - sh
       - -c
       - |
+        cd back-end
         npm install
         node index.js
     # no volumes here — assumes code is baked into image by Coolify/GitHub
@@ -29,6 +30,7 @@ services:
       - sh
       - -c
       - |
+        cd front-end
         npm install
         npm run dev -- --port $FRONTEND_PORT --host
     # no volumes here — assumes code is baked into image by Coolify/GitHub
