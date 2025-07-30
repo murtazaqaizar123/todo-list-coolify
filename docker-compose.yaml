@@ -4,9 +4,9 @@ services:
   backend:
     image: node:18
     container_name: todo_backend
-    working_dir: /app
+    working_dir: /usr/src/app
     volumes:
-      - ./back-end:/app
+      - ./back-end:/usr/src/app
     ports:
       - "5000:5000"
     command:
@@ -19,9 +19,9 @@ services:
   frontend:
     image: node:18
     container_name: todo_frontend
-    working_dir: /app
+    working_dir: /usr/src/app
     volumes:
-      - ./front-end:/app
+      - ./front-end:/usr/src/app
     ports:
       - "3000:3000"
     command:
