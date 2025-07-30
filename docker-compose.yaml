@@ -2,35 +2,19 @@ version: "3.8"
 
 services:
   backend:
-    image: node:18
+    build:
+      context: ./back-end
     container_name: todo_backend
-    working_dir: /back-end
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     environment:
       - PORT=${BACKEND_PORT}
-    command:
-      - sh
-      - -c
-      - |
-        cd back-end
-        npm install
-        node index.js
-    # no volumes here — assumes code is baked into image by Coolify/GitHub
 
   frontend:
-    image: node:18
+    build:
+      context: ./front-end
     container_name: todo_frontend
-    working_dir: /front-end
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     environment:
       - PORT=${FRONTEND_PORT}
-    command:
-      - sh
-      - -c
-      - |
-        cd front-end
-        npm install
-        npm run dev -- --port $FRONTEND_PORT --host
-    # no volumes here — assumes code is baked into image by Coolify/GitHub
