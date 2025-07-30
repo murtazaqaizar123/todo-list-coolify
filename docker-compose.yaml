@@ -4,19 +4,29 @@ services:
   backend:
     image: node:18
     container_name: todo_backend
-    working_dir: /usr/src/app
+    working_dir: /app/back-end
     volumes:
-      - ${PWD}/back-end:/usr/src/app
+      - ./back-end:/app/back-end
     ports:
       - "5000:5000"
-    command: sh -c "npm install && npm start"
+    command:
+      - sh
+      - -c
+      - |
+        npm install
+        node index.js
 
   frontend:
     image: node:18
     container_name: todo_frontend
-    working_dir: /usr/src/app
+    working_dir: /app/front-end
     volumes:
-      - ${PWD}/front-end:/usr/src/app
+      - ./front-end:/app/front-end
     ports:
       - "3000:3000"
-    command: sh -c "npm install && npm run dev -- --host"
+    command:
+      - sh
+      - -c
+      - |
+        npm install
+        npm run dev -- --host
