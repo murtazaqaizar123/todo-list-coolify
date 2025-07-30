@@ -5,6 +5,8 @@ services:
     image: node:18
     container_name: todo_backend
     working_dir: /app/back-end
+    volumes:
+      - .:/app
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     environment:
@@ -15,12 +17,13 @@ services:
       - |
         npm install
         node index.js
-    # no volumes here — assumes code is baked into image by Coolify/GitHub
 
   frontend:
     image: node:18
     container_name: todo_frontend
     working_dir: /app/front-end
+    volumes:                        # ✅ Correct indentation here
+      - .:/app
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     environment:
@@ -31,4 +34,3 @@ services:
       - |
         npm install
         npm run dev -- --port $FRONTEND_PORT --host
-    # no volumes here — assumes code is baked into image by Coolify/GitHub
