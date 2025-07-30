@@ -4,29 +4,31 @@ services:
   backend:
     image: node:18
     container_name: todo_backend
-    working_dir: /usr/src/app
-    volumes:
-      - ./back-end:/usr/src/app
+    working_dir: /app
     ports:
-      - "5000:5000"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    environment:
+      - PORT=${BACKEND_PORT}
     command:
       - sh
       - -c
       - |
+        cd back-end
         npm install
         node index.js
 
   frontend:
     image: node:18
     container_name: todo_frontend
-    working_dir: /usr/src/app
-    volumes:
-      - ./front-end:/usr/src/app
+    working_dir: /app
     ports:
-      - "3000:3000"
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    environment:
+      - PORT=${FRONTEND_PORT}
     command:
       - sh
       - -c
       - |
+        cd front-end
         npm install
-        npm run dev -- --host
+        npm run dev -- --port $FRONTEND_PORT --host
