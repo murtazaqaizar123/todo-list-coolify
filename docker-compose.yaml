@@ -4,7 +4,7 @@ services:
   backend:
     image: node:18
     container_name: todo_backend
-    working_dir: back-end
+    working_dir: /back-end
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     environment:
@@ -20,7 +20,7 @@ services:
   frontend:
     image: node:18
     container_name: todo_frontend
-    working_dir: front-end
+    working_dir: /front-end
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     environment:
