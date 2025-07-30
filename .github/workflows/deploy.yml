@@ -1,0 +1,19 @@
+# .github/workflows/deploy.yml
+
+name: Deploy to Coolify
+
+on:
+  push:
+    branches: [main]  # Change to your default branch if not 'main'
+
+jobs:
+  notify-coolify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Trigger Coolify Deployment Webhook
+        run: |
+          curl -X POST ${{ secrets.COOLIFY_WEBHOOK_URL }}
