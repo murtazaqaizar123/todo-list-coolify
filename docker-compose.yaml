@@ -9,6 +9,10 @@ services:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     environment:
       - PORT=${BACKEND_PORT}
+      - DATABASE_URL=${DATABASE_URL}
+    # optional: persist SQLite db
+    # volumes:
+    #   - sqlite_data:/app/data
 
   frontend:
     build:
@@ -18,3 +22,7 @@ services:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     environment:
       - PORT=${FRONTEND_PORT}
+
+# Uncomment if you want persistent database
+# volumes:
+#   sqlite_data:

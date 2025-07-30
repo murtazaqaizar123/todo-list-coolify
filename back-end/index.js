@@ -9,8 +9,9 @@ dotenv.config(); // Load .env
 
 const app = express();
 const sqlite = sqlite3.verbose();
-const dbPath = process.env.DATABASE_URL || './todo.db';
+const dbPath = process.env.DATABASE_URL || './data/todo.db';
 const db = new sqlite.Database(dbPath);
+
 
 app.use(bodyParser.json());
 

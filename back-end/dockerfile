@@ -1,13 +1,14 @@
-# Backend Dockerfile
 FROM node:18
 
 WORKDIR /app
+
+RUN mkdir -p /app/data
 
 COPY package*.json ./
 RUN npm install
 
 COPY . .
 
-EXPOSE ${PORT:-5000}
+EXPOSE ${BACKEND_PORT}
 
 CMD ["node", "index.js"]
