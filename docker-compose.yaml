@@ -7,11 +7,8 @@ services:
     working_dir: /app
     volumes:
       - ./back-end:/app
-      - todo_db_data:/app/todo_data   # SQLite DB will persist here
     ports:
       - "5000:5000"
-    env_file:
-      - ./back-end/.env
     command:
       - sh
       - -c
@@ -33,6 +30,3 @@ services:
       - |
         npm install
         npm run dev -- --host
-
-volumes:
-  todo_db_data:
